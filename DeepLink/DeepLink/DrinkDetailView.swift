@@ -1,5 +1,5 @@
 //
-//  FoodDetailView.swift
+//  DrinkDetailView.swift
 //  DeepLink
 //
 //  Created by brad on 1/2/24.
@@ -7,35 +7,35 @@
 
 import SwiftUI
 
-struct FoodDetailView: View {
-    let food: Food
+struct DrinkDetailView: View {
+    let drink: Drink
     
-    init(food: Food) {
-        self.food = food
+    init(drink: Drink) {
+        self.drink = drink
     }
     
     var body: some View {
         List {
+            
             Section {
-                LabeledContent("Icon", value: food.name)
-                LabeledContent("Name", value: food.title)
+                LabeledContent("Icon", value: drink.name)
+                LabeledContent("Name", value: drink.title)
                 LabeledContent {
-                    Text(food.price,
+                    Text(drink.price,
                          format: .currency(code: Locale.current.currency?.identifier ?? ""))
                 } label: {
                     Text("Price")
                 }
+                LabeledContent("Fizzy?", value: drink.isFizzy ? "✅" : "❌")
             }
             Section("Description") {
-                Text(food.description)
+                Text(drink.description)
             }
         }
         .navigationTitle("Item")
     }
 }
 
-struct FoodDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        FoodDetailView(food: foods[0])
-    }
+#Preview {
+    DrinkDetailView(drink: drinks[0])
 }
